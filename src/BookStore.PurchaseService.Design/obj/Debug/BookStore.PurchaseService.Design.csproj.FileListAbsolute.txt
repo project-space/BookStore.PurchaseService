@@ -1,0 +1,5 @@
+C:\BookStore\BookStore.PurchaseService\src\BookStore.PurchaseService.Design\bin\Debug\BookStore.PurchaseService.Design.dll
+C:\BookStore\BookStore.PurchaseService\src\BookStore.PurchaseService.Design\bin\Debug\BookStore.PurchaseService.Design.pdb
+C:\BookStore\BookStore.PurchaseService\src\BookStore.PurchaseService.Design\obj\Debug\BookStore.PurchaseService.Design.csprojResolveAssemblyReference.cache
+C:\BookStore\BookStore.PurchaseService\src\BookStore.PurchaseService.Design\obj\Debug\BookStore.PurchaseService.Design.dll
+C:\BookStore\BookStore.PurchaseService\src\BookStore.PurchaseService.Design\obj\Debug\BookStore.PurchaseService.Design.pdb

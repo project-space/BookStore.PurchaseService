@@ -86,6 +86,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Controllers\CartController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -102,8 +103,20 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Controllers\" />
-    <Folder Include="Models\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\BookStore.PurchaseService.Business\BookStore.PurchaseService.Business.csproj">
+      <Project>{45e88359-41d3-45f4-87fb-54f1df984a8c}</Project>
+      <Name>BookStore.PurchaseService.Business</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\BookStore.PurchaseService.DataAccess\BookStore.PurchaseService.DataAccess.csproj">
+      <Project>{19b3e7f3-31d8-4eca-87eb-09cc2cac3ce8}</Project>
+      <Name>BookStore.PurchaseService.DataAccess</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\BookStore.PurchaseService.Design\BookStore.PurchaseService.Design.csproj">
+      <Project>{711ff8be-b4a2-4e07-aafe-a05aa8c03625}</Project>
+      <Name>BookStore.PurchaseService.Design</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

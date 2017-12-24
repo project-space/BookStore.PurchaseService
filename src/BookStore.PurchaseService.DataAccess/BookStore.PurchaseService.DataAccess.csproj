@@ -4,7 +4,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{639BB820-3881-48E9-BB86-ECA0C09DA027}</ProjectGuid>
+    <ProjectGuid>{19B3E7F3-31D8-4ECA-87EB-09CC2CAC3CE8}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>BookStore.PurchaseService.DataAccess</RootNamespace>
