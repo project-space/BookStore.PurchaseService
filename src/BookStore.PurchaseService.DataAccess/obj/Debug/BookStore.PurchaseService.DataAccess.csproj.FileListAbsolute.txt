@@ -1,9 +1,0 @@
-C:\BookStore\BookStore.PurchaseService\src\BookStore.PurchaseService.DataAccess\bin\Debug\BookStore.PurchaseService.DataAccess.dll
-C:\BookStore\BookStore.PurchaseService\src\BookStore.PurchaseService.DataAccess\bin\Debug\BookStore.PurchaseService.DataAccess.pdb
-C:\BookStore\BookStore.PurchaseService\src\BookStore.PurchaseService.DataAccess\bin\Debug\BookStore.PurchaseService.Design.dll
-C:\BookStore\BookStore.PurchaseService\src\BookStore.PurchaseService.DataAccess\bin\Debug\Dapper.dll
-C:\BookStore\BookStore.PurchaseService\src\BookStore.PurchaseService.DataAccess\bin\Debug\BookStore.PurchaseService.Design.pdb
-C:\BookStore\BookStore.PurchaseService\src\BookStore.PurchaseService.DataAccess\bin\Debug\Dapper.xml
-C:\BookStore\BookStore.PurchaseService\src\BookStore.PurchaseService.DataAccess\obj\Debug\BookStore.PurchaseService.DataAccess.csprojResolveAssemblyReference.cache
-C:\BookStore\BookStore.PurchaseService\src\BookStore.PurchaseService.DataAccess\obj\Debug\BookStore.PurchaseService.DataAccess.dll
-C:\BookStore\BookStore.PurchaseService\src\BookStore.PurchaseService.DataAccess\obj\Debug\BookStore.PurchaseService.DataAccess.pdb

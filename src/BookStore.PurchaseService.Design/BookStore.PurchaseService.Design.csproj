@@ -43,6 +43,7 @@
     <Compile Include="Abstractions\Business\ICartCreater.cs" />
     <Compile Include="Abstractions\DataAccess\ICartDao.cs" />
     <Compile Include="Models\Cart.cs" />
+    <Compile Include="Models\CartItem.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup />

@@ -10,5 +10,8 @@ namespace BookStore.PurchaseService.Design.Abstractions.DataAccess
     public interface ICartDao
     {
         int CreateCart(Cart cart);
+        void AddItem(CartItem item);
+        List<CartItem> GetItems(int cartId);
+        void DeleteItem(int id);
     }
 }

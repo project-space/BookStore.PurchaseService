@@ -2,6 +2,7 @@
 using BookStore.PurchaseService.Design.Abstractions.Business;
 using BookStore.PurchaseService.Design.Models;
 using System.Web.Http;
+using System.Web.Http.Results;
 
 namespace BookStore.PurchaseService.Api.Controllers
 {
@@ -11,6 +12,6 @@ namespace BookStore.PurchaseService.Api.Controllers
         ICartCreater cartCreater = new CartCreater();
 
         [HttpGet]
-        public Cart CreateCart() => cartCreater.Create();
+        public JsonResult<Cart> CreateCart() => Json(cartCreater.Create());
     }
 }
