@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace BookStore.PurchaseService.Business
 {
-    public class CartCreater : ICartCreater
+    public class CartCreator : ICartCreator
     {
         ICartDao cartDao = new CartDao();
         public Cart Create()

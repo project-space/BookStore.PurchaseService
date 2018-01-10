@@ -40,8 +40,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="CartCreater.cs" />
+    <Compile Include="CartCreator.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="PurchaseCreator.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\BookStore.PurchaseService.DataAccess\BookStore.PurchaseService.DataAccess.csproj">

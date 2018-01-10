@@ -46,6 +46,7 @@
   <ItemGroup>
     <Compile Include="CartDao.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="PurchaseDao.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

@@ -9,9 +9,9 @@ namespace BookStore.PurchaseService.Api.Controllers
     [RoutePrefix("api/cart")]
     public class CartController : ApiController
     {
-        ICartCreater cartCreater = new CartCreater();
+        ICartCreator cartCreator = new CartCreator();
 
         [HttpGet]
-        public JsonResult<Cart> CreateCart() => Json(cartCreater.Create());
+        public JsonResult<Cart> CreateCart() => Json(cartCreator.Create());
     }
 }

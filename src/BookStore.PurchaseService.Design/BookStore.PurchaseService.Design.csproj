@@ -40,10 +40,15 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Abstractions\Business\ICartCreater.cs" />
+    <Compile Include="Abstractions\Business\ICartCreator.cs" />
+    <Compile Include="Abstractions\Business\IPurchaseCreator.cs" />
     <Compile Include="Abstractions\DataAccess\ICartDao.cs" />
+    <Compile Include="Abstractions\DataAccess\IPurchaseDao.cs" />
+    <Compile Include="Models\Adress.cs" />
     <Compile Include="Models\Cart.cs" />
     <Compile Include="Models\CartItem.cs" />
+    <Compile Include="Models\Order.cs" />
+    <Compile Include="Models\PurchaseDetails.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup />

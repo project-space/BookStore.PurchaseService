@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace BookStore.PurchaseService.Design.Abstractions.Business
 {
-    public interface ICartCreater
+    public interface ICartCreator
     {
         Cart Create();
     }
