@@ -15,6 +15,30 @@ namespace BookStore.PurchaseService.DataAccess
     {
         static string connectionString = @"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=BookStore.Purchase;Integrated Security=True;";
 
+        public int CreatePurchase(Purchase purchase)
+        {
+            using (IDbConnection db = new SqlConnection(connectionString))
+            {
+                return db.Query<int>(@"INSERT INTO Purchase (AccountId, GuestId, PurchaseDetailsId) 
+                                       VALUES(@AccountId, @GuestId, @PurchaseDetailsId);
+                                       select scope_identity();", purchase).Single();
+            }
+        }
+
+        public void AddPurchaseItems(List<PurchaseItem> items)
+        {
+            using (IDbConnection db = new SqlConnection(connectionString))
+            {
+                foreach (var item in items)
+                {
+                    db.Execute(@"INSERT INTO PurchaseItem (BookId, PurchaseId) 
+                                       VALUES(@BookId,@PurchaseId);", item);
+                }
+            }
+        }
+
+        
+
         public int CreateAdress(Adress adress)
         {
             using (IDbConnection db = new SqlConnection(connectionString))
