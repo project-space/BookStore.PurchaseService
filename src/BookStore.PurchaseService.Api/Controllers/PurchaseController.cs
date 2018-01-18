@@ -1,4 +1,6 @@
-﻿using BookStore.PurchaseService.Design.Models;
+﻿using BookStore.PurchaseService.Business;
+using BookStore.PurchaseService.Design.Abstractions.Business;
+using BookStore.PurchaseService.Design.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,10 +11,14 @@ namespace BookStore.PurchaseService.Api.Controllers
 {
     public class PurchaseController : ApiController
     {
-        [HttpPost]
-        public void RegisterAPurchase(Order order)
-        {
+        static IPurchaseCreator purchaseCreator = new PurchaseCreator();
 
+        [HttpPost, Route("api/purchase/create")]
+        public int Create(Order order)
+        {
+            var purchaseId = purchaseCreator.CreatePurchase(order);
+            purchaseCreator.AddPurchaseItems(order.BookIds, purchaseId);
+            return purchaseId;
         }
     }
 }
