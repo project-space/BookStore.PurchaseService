@@ -9,6 +9,7 @@ namespace BookStore.PurchaseService.Design.Abstractions.Business
 {
     public interface IPurchaseCreator
     {
+        void AddPurchaseItems(List<int> bookIds, int purchaseId);
         int CreatePurchase(Order order);
     }
 }

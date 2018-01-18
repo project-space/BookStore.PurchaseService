@@ -9,6 +9,8 @@ namespace BookStore.PurchaseService.Design.Abstractions.DataAccess
 {
     public interface IPurchaseDao
     {
+        void AddPurchaseItems(List<PurchaseItem> items);
+        int CreatePurchase(Purchase purchase);
         int CreateAdress(Adress adress);
         int CreatePurchaseDetails(PurchaseDetails details);
     }

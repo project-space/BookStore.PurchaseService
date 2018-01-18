@@ -48,7 +48,9 @@
     <Compile Include="Models\Cart.cs" />
     <Compile Include="Models\CartItem.cs" />
     <Compile Include="Models\Order.cs" />
+    <Compile Include="Models\Purchase.cs" />
     <Compile Include="Models\PurchaseDetails.cs" />
+    <Compile Include="Models\PurchaseItem.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup />
