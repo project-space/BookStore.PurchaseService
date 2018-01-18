@@ -10,15 +10,35 @@ using System.Threading.Tasks;
 
 namespace BookStore.PurchaseService.Business
 {
-    class PurchaseCreator : IPurchaseCreator
+    public class PurchaseCreator : IPurchaseCreator
     {
         IPurchaseDao purchaseDao = new PurchaseDao();
+
+        public void AddPurchaseItems(List<int> bookIds, int purchaseId)
+        {
+            var items = new List<PurchaseItem>();
+            foreach (var id in bookIds)
+            {
+                items.Add(new PurchaseItem {
+                    PurchaseId = purchaseId,
+                    BookId = id
+                    });
+                }
+            purchaseDao.AddPurchaseItems(items);
+        }
+
         public int CreatePurchase(Order order)
         {
             var adressId = CreateAdress(order);
             var purchaseDetailsId = CreatePurchaseDetails(order, adressId);
+            var purchase = new Purchase
+            {
+                AccountId = order.AccountId,
+                GuestId = order.GuestId,
+                PurchaseDetailsId = purchaseDetailsId
+            };
 
-            return 0;
+            return purchaseDao.CreatePurchase(purchase);
         }
 
         private int CreateAdress(Order order)
@@ -39,8 +59,11 @@ namespace BookStore.PurchaseService.Business
 
         private int CreatePurchaseDetails(Order order, int adressId)
         {
-            var details = new PurchaseDetails { FullName = order.FullName,
-                                                AdressId = adressId};
+            var details = new PurchaseDetails
+            {
+                FullName = order.FullName,
+                AdressId = adressId
+            };
             return purchaseDao.CreatePurchaseDetails(details);
         }
     }
