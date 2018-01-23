@@ -43,6 +43,7 @@
     <Compile Include="Abstractions\Business\ICartCreator.cs" />
     <Compile Include="Abstractions\Business\IPurchaseCreator.cs" />
     <Compile Include="Abstractions\DataAccess\ICartDao.cs" />
+    <Compile Include="Abstractions\DataAccess\IConnectionStringGetter.cs" />
     <Compile Include="Abstractions\DataAccess\IPurchaseDao.cs" />
     <Compile Include="Models\Adress.cs" />
     <Compile Include="Models\Cart.cs" />

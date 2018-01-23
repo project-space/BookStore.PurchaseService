@@ -1,5 +1,4 @@
-﻿using BookStore.PurchaseService.DataAccess;
-using BookStore.PurchaseService.Design.Abstractions.Business;
+﻿using BookStore.PurchaseService.Design.Abstractions.Business;
 using BookStore.PurchaseService.Design.Abstractions.DataAccess;
 using BookStore.PurchaseService.Design.Models;
 using System;
@@ -12,7 +11,13 @@ namespace BookStore.PurchaseService.Business
 {
     public class CartCreator : ICartCreator
     {
-        ICartDao cartDao = new CartDao();
+        private readonly ICartDao cartDao;
+
+        public CartCreator(ICartDao cartDao)
+        {
+            this.cartDao = cartDao;
+        }
+
         public Cart Create()
         {
             var guestId = Guid.NewGuid();

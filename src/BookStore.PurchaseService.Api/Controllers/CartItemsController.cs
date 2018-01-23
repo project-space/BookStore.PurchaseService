@@ -12,7 +12,12 @@ namespace BookStore.PurchaseService.Api.Controllers
 {
     public class CartItemsController : ApiController
     {
-        ICartDao cartDao = new CartDao();
+        private readonly ICartDao cartDao;
+        
+        public CartItemsController(ICartDao cartDao)
+        {
+            this.cartDao = cartDao;
+        }
 
         [HttpPost]
         [Route("api/cart-items/add")]

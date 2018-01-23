@@ -12,7 +12,12 @@ namespace BookStore.PurchaseService.Business
 {
     public class PurchaseCreator : IPurchaseCreator
     {
-        IPurchaseDao purchaseDao = new PurchaseDao();
+        private readonly IPurchaseDao purchaseDao;
+
+        public PurchaseCreator(IPurchaseDao purchaseDao)
+        {
+            this.purchaseDao = purchaseDao;
+        }
 
         public void AddPurchaseItems(List<int> bookIds, int purchaseId)
         {

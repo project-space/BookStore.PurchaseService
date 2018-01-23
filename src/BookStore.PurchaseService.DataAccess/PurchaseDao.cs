@@ -13,10 +13,16 @@ namespace BookStore.PurchaseService.DataAccess
 {
     public class PurchaseDao : IPurchaseDao
     {
-        static string connectionString = @"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=BookStore.Purchase;Integrated Security=True;";
+        private readonly string connectionString;
+
+        public PurchaseDao(IConnectionStringGetter connectionStringGetter)
+        {
+            this.connectionString = connectionStringGetter.Get();
+        }
 
         public int CreatePurchase(Purchase purchase)
         {
+
             using (IDbConnection db = new SqlConnection(connectionString))
             {
                 return db.Query<int>(@"INSERT INTO Purchase (AccountId, GuestId, PurchaseDetailsId) 

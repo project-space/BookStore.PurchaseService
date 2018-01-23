@@ -13,8 +13,12 @@ namespace BookStore.PurchaseService.DataAccess
 {
     public class CartDao : ICartDao
     {
-        static string connectionString = @"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=BookStore.Purchase;Integrated Security=True;";
+        private readonly string connectionString;
 
+        public CartDao(IConnectionStringGetter connectionStringGetter)
+        {
+            this.connectionString = connectionStringGetter.Get();
+        }
         public int CreateCart(Cart cart)
         {
             using (IDbConnection db = new SqlConnection(connectionString))
