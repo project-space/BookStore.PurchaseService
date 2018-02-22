@@ -9,6 +9,6 @@ namespace BookStore.PurchaseService.Design.Abstractions.Business
 {
     public interface ICartCreator
     {
-        Cart Create();
+        Task<Cart> Create();
     }
 }

@@ -1,6 +1,6 @@
-﻿using BookStore.PurchaseService.Business;
-using BookStore.PurchaseService.Design.Abstractions.Business;
+﻿using BookStore.PurchaseService.Design.Abstractions.Business;
 using BookStore.PurchaseService.Design.Models;
+using System.Threading.Tasks;
 using System.Web.Http;
 using System.Web.Http.Results;
 
@@ -17,6 +17,6 @@ namespace BookStore.PurchaseService.Api.Controllers
         }
 
         [HttpGet]
-        public JsonResult<Cart> CreateCart() => Json(cartCreator.Create());
+        public async Task<JsonResult<Cart>> CreateCart() => Json(await cartCreator.Create().ConfigureAwait(false));
     }
 }

@@ -1,11 +1,9 @@
 ﻿using BookStore.PurchaseService.Design.Abstractions.DataAccess;
-using System;
 using Dapper;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using BookStore.PurchaseService.Design.Models;
 
@@ -19,41 +17,41 @@ namespace BookStore.PurchaseService.DataAccess
         {
             this.connectionString = connectionStringGetter.Get();
         }
-        public int CreateCart(Cart cart)
+
+        public async Task<int> CreateCart(Cart cart)
         {
             using (IDbConnection db = new SqlConnection(connectionString))
             {
-                return db.Query<int>(@"INSERT INTO Cart (AccountId, GuestId) VALUES(@AccountId, @GuestId);
-                                    select scope_identity();", cart).Single();
+                var createdCart = await db.QueryAsync<int>(@"INSERT INTO Cart (AccountId, GuestId) VALUES(@AccountId, @GuestId);
+                                    select scope_identity();", cart).ConfigureAwait(false);
+                return createdCart.Single();
             }
         }
 
-        public void AddItem(CartItem item)
+        public async Task AddItem(CartItem item)
         {
             using (IDbConnection db = new SqlConnection(connectionString))
             {
-                db.Execute(@"INSERT INTO CartItem(CartId, BookId) VALUES(@CartId, @BookId);", item);
+               await db.ExecuteAsync(@"INSERT INTO CartItem(CartId, BookId) VALUES(@CartId, @BookId);", item).ConfigureAwait(false);
             }
         }
 
-        public void DeleteItem(int id)
+        public async Task DeleteItem(int id)
         {
             using (IDbConnection db = new SqlConnection(connectionString))
             {
                 var sqlQuery = "delete from CartItem where Id = @id";
-                db.Execute(sqlQuery, new { id });
+                await db.ExecuteAsync(sqlQuery, new { id }).ConfigureAwait(false);
             }
         }
 
-        public List<CartItem> GetItems(int cartId)
+        public async Task<List<CartItem>> GetItems(int cartId)
         {
             using (IDbConnection db = new SqlConnection(connectionString))
             {
-                return db.Query<CartItem>("select * from CartItem where CartId=@cartId", new { cartId }).ToList();
+                var items = await db.QueryAsync<CartItem>("select * from CartItem where CartId=@cartId", new { cartId }).ConfigureAwait(false);
+                return items.ToList();
             }
-        }
-
-       
-        
+        }      
     }
 }

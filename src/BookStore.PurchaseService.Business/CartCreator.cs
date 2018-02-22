@@ -18,11 +18,11 @@ namespace BookStore.PurchaseService.Business
             this.cartDao = cartDao;
         }
 
-        public Cart Create()
+        public async Task<Cart> Create()
         {
             var guestId = Guid.NewGuid();
             var cart = new Cart {GuestId = guestId.ToString()};
-            cart.Id = cartDao.CreateCart(cart);
+            cart.Id = await cartDao.CreateCart(cart).ConfigureAwait(false);
 
             return cart;
         }
