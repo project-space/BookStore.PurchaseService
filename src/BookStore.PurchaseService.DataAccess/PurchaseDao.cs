@@ -20,48 +20,51 @@ namespace BookStore.PurchaseService.DataAccess
             this.connectionString = connectionStringGetter.Get();
         }
 
-        public int CreatePurchase(Purchase purchase)
+        public async Task<int> CreatePurchase(Purchase purchase)
         {
 
             using (IDbConnection db = new SqlConnection(connectionString))
             {
-                return db.Query<int>(@"INSERT INTO Purchase (AccountId, GuestId, PurchaseDetailsId) 
+                var createdPurchase = await db.QueryAsync<int>(@"INSERT INTO Purchase (AccountId, GuestId, PurchaseDetailsId) 
                                        VALUES(@AccountId, @GuestId, @PurchaseDetailsId);
-                                       select scope_identity();", purchase).Single();
+                                       select scope_identity();", purchase).ConfigureAwait(false);
+                return createdPurchase.Single();
             }
         }
 
-        public void AddPurchaseItems(List<PurchaseItem> items)
+        public async Task AddPurchaseItems(List<PurchaseItem> items)
         {
             using (IDbConnection db = new SqlConnection(connectionString))
             {
                 foreach (var item in items)
                 {
-                    db.Execute(@"INSERT INTO PurchaseItem (BookId, PurchaseId) 
-                                       VALUES(@BookId,@PurchaseId);", item);
+                    await db.ExecuteAsync(@"INSERT INTO PurchaseItem (BookId, PurchaseId) 
+                                       VALUES(@BookId,@PurchaseId);", item).ConfigureAwait(false);
                 }
             }
         }
 
         
 
-        public int CreateAdress(Adress adress)
+        public async Task<int> CreateAdress(Adress adress)
         {
             using (IDbConnection db = new SqlConnection(connectionString))
             {
-                return db.Query<int>(@"INSERT INTO Adress (Postcode, Country, City, Street, House, Apartment, PhoneNumber) 
+                var createdAdress = await db.QueryAsync<int>(@"INSERT INTO Adress (Postcode, Country, City, Street, House, Apartment, PhoneNumber) 
                                        VALUES(@Postcode, @Country, @City, @Street, @House, @Apartment, @PhoneNumber);
-                                       select scope_identity();", adress).Single();
+                                       select scope_identity();", adress).ConfigureAwait(false);
+                return createdAdress.Single();
             }
         }
 
-        public int CreatePurchaseDetails(PurchaseDetails details)
+        public async Task<int> CreatePurchaseDetails(PurchaseDetails details)
         {
             using (IDbConnection db = new SqlConnection(connectionString))
             {
-                return db.Query<int>(@"INSERT INTO PurchaseDetails (FullName, AdressId) 
+                var createdDetails = await db.QueryAsync<int>(@"INSERT INTO PurchaseDetails (FullName, AdressId) 
                                        VALUES(@FullName, @AdressId);
-                                       select scope_identity();", details).Single();
+                                       select scope_identity();", details).ConfigureAwait(false);
+                return createdDetails.Single();
             }
         }
 

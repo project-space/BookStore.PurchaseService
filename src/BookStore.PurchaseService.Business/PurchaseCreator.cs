@@ -1,11 +1,7 @@
-﻿using BookStore.PurchaseService.DataAccess;
-using BookStore.PurchaseService.Design.Abstractions.Business;
+﻿using BookStore.PurchaseService.Design.Abstractions.Business;
 using BookStore.PurchaseService.Design.Abstractions.DataAccess;
 using BookStore.PurchaseService.Design.Models;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace BookStore.PurchaseService.Business
@@ -19,7 +15,7 @@ namespace BookStore.PurchaseService.Business
             this.purchaseDao = purchaseDao;
         }
 
-        public void AddPurchaseItems(List<int> bookIds, int purchaseId)
+        public async Task AddPurchaseItems(List<int> bookIds, int purchaseId)
         {
             var items = new List<PurchaseItem>();
             foreach (var id in bookIds)
@@ -29,13 +25,14 @@ namespace BookStore.PurchaseService.Business
                     BookId = id
                     });
                 }
-            purchaseDao.AddPurchaseItems(items);
+
+            await purchaseDao.AddPurchaseItems(items).ConfigureAwait(false);
         }
 
-        public int CreatePurchase(Order order)
+        public async Task<int> CreatePurchase(Order order)
         {
-            var adressId = CreateAdress(order);
-            var purchaseDetailsId = CreatePurchaseDetails(order, adressId);
+            var adressId = await CreateAdress(order).ConfigureAwait(false);
+            var purchaseDetailsId = await CreatePurchaseDetails(order, adressId).ConfigureAwait(false);
             var purchase = new Purchase
             {
                 AccountId = order.AccountId,
@@ -43,33 +40,33 @@ namespace BookStore.PurchaseService.Business
                 PurchaseDetailsId = purchaseDetailsId
             };
 
-            return purchaseDao.CreatePurchase(purchase);
+            return await purchaseDao.CreatePurchase(purchase).ConfigureAwait(false);
         }
 
-        private int CreateAdress(Order order)
+        private async Task<int> CreateAdress(Order order)
         {
             var adress = new Adress
             {
                 Postcode = order.Postcode,
-                Country = order.Country,
-                City = order.City,
+                Town = order.Town,
                 Street = order.Street,
                 House = order.House,
                 Apartment = order.Apartment,
                 PhoneNumber = order.PhoneNumber
             };
             
-            return purchaseDao.CreateAdress(adress);
+            return await purchaseDao.CreateAdress(adress).ConfigureAwait(false);
         }
 
-        private int CreatePurchaseDetails(Order order, int adressId)
+        private async Task<int> CreatePurchaseDetails(Order order, int adressId)
         {
             var details = new PurchaseDetails
             {
                 FullName = order.FullName,
                 AdressId = adressId
             };
-            return purchaseDao.CreatePurchaseDetails(details);
+
+            return await purchaseDao.CreatePurchaseDetails(details).ConfigureAwait(false);
         }
     }
 }

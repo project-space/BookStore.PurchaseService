@@ -1,11 +1,7 @@
-﻿using BookStore.PurchaseService.DataAccess;
-using BookStore.PurchaseService.Design.Abstractions.DataAccess;
+﻿using BookStore.PurchaseService.Design.Abstractions.DataAccess;
 using BookStore.PurchaseService.Design.Models;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Net;
-using System.Net.Http;
+using System.Threading.Tasks;
 using System.Web.Http;
 
 namespace BookStore.PurchaseService.Api.Controllers
@@ -21,24 +17,23 @@ namespace BookStore.PurchaseService.Api.Controllers
 
         [HttpPost]
         [Route("api/cart-items/add")]
-        public void AddCartItem(CartItem item)
+        public async Task<int> AddCartItem(CartItem item)
         {
-            cartDao.AddItem(item);
+            return await cartDao.AddItem(item).ConfigureAwait(false);
         }
-
 
         [HttpDelete]
         [Route("api/cart-items/delete/{id}")]
-        public void DeleteCartItem(int id)
+        public async Task DeleteCartItem(int id)
         {
-            cartDao.DeleteItem(id);
+            await cartDao.DeleteItem(id).ConfigureAwait(false);
         }
 
         [HttpGet]
         [Route("api/cart-items/getitems/{cartId}")]
-        public List<CartItem> GetItems(int cartId)
+        public async Task<List<CartItem>> GetItems(int cartId)
         {
-            return cartDao.GetItems(cartId);
+            return await cartDao.GetItems(cartId).ConfigureAwait(false);
         }
     }
 }

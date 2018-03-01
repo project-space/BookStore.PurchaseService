@@ -28,11 +28,13 @@ namespace BookStore.PurchaseService.DataAccess
             }
         }
 
-        public async Task AddItem(CartItem item)
+        public async Task<int> AddItem(CartItem item)
         {
             using (IDbConnection db = new SqlConnection(connectionString))
             {
-               await db.ExecuteAsync(@"INSERT INTO CartItem(CartId, BookId) VALUES(@CartId, @BookId);", item).ConfigureAwait(false);
+               var createdItem = await db.QueryAsync<int>(@"INSERT INTO CartItem(CartId, BookId) VALUES(@CartId, @BookId);
+                                          select scope_identity();", item).ConfigureAwait(false);
+                return createdItem.Single();
             }
         }
 
